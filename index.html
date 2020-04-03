@@ -1,1 +1,26 @@
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title>Sorting Visualiser</title>
+  </head>
+  <body>
+    <div class="menuWrapper">
+      <button class="generateArray">Generate new array</button>
+      <span class="size">Choose array size:</span>
+      <input type="range" name="arraySize" min="1" max="1000" />
+      <button class="sortButton">Sort!</button>
+      <div class="sortingAlgorithms">
+        <span class="description">Choose algorithm:</span>
+        <button class="sortingAlgorithms__oneAlgorithm">Bubble sort</button>
+        <button class="sortingAlgorithms__oneAlgorithm">Selection sort</button>
+        <button class="sortingAlgorithms__oneAlgorithm">Quick sort</button>
+        <button class="sortingAlgorithms__oneAlgorithm">Insertion sort</button>
+        <button class="sortingAlgorithms__oneAlgorithm">Merg sort</button>
+      </div>
+    </div>
+    <script src="./sortingVisualizer.js"></script>
+  </body>
+</html>
