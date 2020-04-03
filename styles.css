@@ -49,7 +49,6 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 8.4px;
   cursor: pointer;
-  animate: 0.2s;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   background: #3071a9;
   border-radius: 1.3px;
@@ -73,7 +72,6 @@ input[type="range"]::-moz-range-track {
   width: 100%;
   height: 8.4px;
   cursor: pointer;
-  animate: 0.2s;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   background: #3071a9;
   border-radius: 1.3px;
@@ -92,7 +90,6 @@ input[type="range"]::-ms-track {
   width: 100%;
   height: 8.4px;
   cursor: pointer;
-  animate: 0.2s;
   background: transparent;
   border-color: transparent;
   border-width: 16px 0;
@@ -130,7 +127,7 @@ input[type="range"]:focus::-ms-fill-upper {
   display: block;
   background: none;
   font-size: 18px;
-  padding: 0 15px;
+  padding: 0 50px;
   border: none;
   cursor: pointer;
   border-right: solid black 2px;
@@ -154,7 +151,23 @@ input[type="range"]:focus::-ms-fill-upper {
   padding: 0 15px;
   font-size: 18px;
   cursor: pointer;
+  outline: none;
 }
 .sortingAlgorithms__oneAlgorithm:last-child {
   border: none;
+}
+.arrayWrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  position: fixed;
+  width: 100%;
+  bottom: 10px;
+  align-items: baseline;
+}
+.arrayBar {
+  bottom: 0;
+  display: block;
+  margin-left: 2px;
+  background: blue;
+  background-size: cover;
 }
