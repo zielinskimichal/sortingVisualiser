@@ -23,6 +23,7 @@ body {
   background: none;
   margin-left: 15px;
   border-right: solid black 2px;
+  outline: none;
 }
 .size {
   padding-left: 15px;
@@ -131,6 +132,7 @@ input[type="range"]:focus::-ms-fill-upper {
   border: none;
   cursor: pointer;
   border-right: solid black 2px;
+  outline: none;
 }
 .sortingAlgorithms {
   display: flex;
@@ -163,6 +165,7 @@ input[type="range"]:focus::-ms-fill-upper {
   width: 100%;
   bottom: 10px;
   align-items: baseline;
+  margin-right: 2px;
 }
 .arrayBar {
   bottom: 0;
@@ -170,4 +173,10 @@ input[type="range"]:focus::-ms-fill-upper {
   margin-left: 2px;
   background: blue;
   background-size: cover;
+}
+.animated {
+  background: red;
+}
+.bolded {
+  font-weight: bold;
 }
