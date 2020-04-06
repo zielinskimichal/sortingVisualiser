@@ -9,6 +9,7 @@ let algorithms = document.querySelectorAll(".sortingAlgorithms__oneAlgorithm ");
 algorithms.forEach(element =>
   element.addEventListener("click", e => {
     currentAlgorithm = e.target.innerHTML;
+
     let buttonClear = document.querySelector(".bolded");
     if (buttonClear != null && buttonClear != undefined) {
       buttonClear.classList.remove("bolded");
@@ -24,6 +25,18 @@ function processAlgorithmChoice() {
     case "Selection sort":
       selectionSort();
       break;
+    case "Quick sort":
+      animationsValues = [];
+      animations = [];
+      quickSort(0, sortableArray.length - 1);
+      correctSort();
+      animate();
+      break;
+    case "Merge sort":
+      console.log(sortableArray);
+      mergeSort(0, sortableArray.length - 1);
+      correctSort();
+      console.log(sortableArray);
   }
 }
 
@@ -88,7 +101,6 @@ document
   .addEventListener("click", processAlgorithmChoice);
 
 function animate() {
-  //console.log(animations);
   for (let i = 0; i < animations.length; i += 2) {
     setTimeout(() => {
       let animationHelper = animations[i].split(",");
@@ -117,6 +129,7 @@ function animate() {
         document.getElementById(
           secondElement
         ).style.height = `${animationsValues[i]}px`;
+      } else {
       }
     }, 2 * i);
   }
@@ -149,8 +162,7 @@ function selectionSort() {
     animationsValues.push(sortableArray[minUnsortedIndex]);
     animationsValues.push(sortableArray[firstUnsortedIndex]);
   }
-  //  console.log(animations);
-  // console.log(animationsValues);
+
   animate();
   correctSort();
 }
@@ -160,5 +172,75 @@ function correctSort() {
   });
   for (let i = 0; i < correctlySortedArray.length; i++) {
     if (sortableArray[i] != correctlySortedArray[i]) console.log("fuck");
+  }
+}
+
+function quickSort(left, right) {
+  if (left >= right) return;
+  let border = left - 1;
+  let pivot = sortableArray[right];
+  for (let i = left; i < right; i++) {
+    let helper = i + "," + right;
+    animations.push(helper);
+    if (sortableArray[i] < pivot) {
+      helper = i + "," + (border + 1);
+      animations.push(helper);
+      let temp = sortableArray[i];
+      sortableArray[i] = sortableArray[border + 1];
+      sortableArray[border + 1] = temp;
+      border++;
+      animationsValues.push(temp);
+      animationsValues.push(sortableArray[i]);
+    } else {
+      animationsValues.push(0);
+      animationsValues.push(0);
+      animations.push("none");
+    }
+  }
+  helper = right + "," + (border + 1);
+  animations.push(helper);
+  animations.push(helper);
+  let temp = sortableArray[right];
+  sortableArray[right] = sortableArray[border + 1];
+  sortableArray[border + 1] = temp;
+  animationsValues.push(temp);
+  animationsValues.push(sortableArray[right]);
+  quickSort(left, border);
+  quickSort(border + 2, right);
+}
+
+function mergeSort(start, end) {
+  if (start < end) {
+    let mid = Math.floor((start + end) / 2);
+    console.log(mid);
+    mergeSort(start, mid);
+    mergeSort(mid + 1, end);
+    merge(start, mid, end);
+  }
+}
+
+function merge(start, mid, end) {
+  let mergeHelper = [];
+  for (let i = start; i <= end; i++) {
+    mergeHelper[i] = sortableArray[i];
+  }
+  console.log(mergeHelper);
+  let i = start;
+  let j = mid + 1;
+  let k = start;
+  while (i <= mid && j < end) {
+    if (mergeHelper[i] <= mergeHelper[j]) {
+      sortableArray[k] = mergeHelper[i];
+      i++;
+    } else {
+      sortableArray[k] = mergeHelper[j];
+      j++;
+    }
+    k++;
+  }
+  while (i <= mid) {
+    sortableArray[k] = mergeHelper[k];
+    i++;
+    k++;
   }
 }
