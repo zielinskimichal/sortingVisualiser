@@ -34,9 +34,14 @@ function processAlgorithmChoice() {
       break;
     case "Merge sort":
       console.log(sortableArray);
+      animationsValues = [];
+      animations = [];
       mergeSort(0, sortableArray.length - 1);
       correctSort();
+      console.log(animations);
+      console.log(animationsValues);
       console.log(sortableArray);
+      animate();
   }
 }
 
@@ -131,7 +136,7 @@ function animate() {
         ).style.height = `${animationsValues[i]}px`;
       } else {
       }
-    }, 2 * i);
+    }, 5 * i);
   }
   correctSort();
 }
@@ -210,9 +215,9 @@ function quickSort(left, right) {
 }
 
 function mergeSort(start, end) {
-  if (start < end) {
+  if (start != end) {
     let mid = Math.floor((start + end) / 2);
-    console.log(mid);
+
     mergeSort(start, mid);
     mergeSort(mid + 1, end);
     merge(start, mid, end);
@@ -224,23 +229,47 @@ function merge(start, mid, end) {
   for (let i = start; i <= end; i++) {
     mergeHelper[i] = sortableArray[i];
   }
-  console.log(mergeHelper);
+
   let i = start;
   let j = mid + 1;
   let k = start;
-  while (i <= mid && j < end) {
+  while (i <= mid && j <= end) {
     if (mergeHelper[i] <= mergeHelper[j]) {
+      animations.push(j + "," + i);
+      animationsValues.push(sortableArray[k]);
       sortableArray[k] = mergeHelper[i];
+      animations.push(i + "," + k);
+      animationsValues.push(sortableArray[k]);
       i++;
     } else {
+      animations.push(j + "," + i);
+      animations.push(j + "," + k);
+      animationsValues.push(sortableArray[k]);
       sortableArray[k] = mergeHelper[j];
+      animationsValues.push(sortableArray[k]);
       j++;
     }
     k++;
   }
-  while (i <= mid) {
-    sortableArray[k] = mergeHelper[k];
-    i++;
-    k++;
+  if (i > mid) {
+    while (j <= end) {
+      animations.push(k + "," + j);
+      animations.push(j + "," + k);
+      animationsValues.push(sortableArray[k]);
+      sortableArray[k] = mergeHelper[j];
+      animationsValues.push(sortableArray[k]);
+      j++;
+      k++;
+    }
+  } else if (j > end) {
+    while (i <= mid) {
+      animations.push(k + "," + i);
+      animations.push(i + "," + k);
+      animationsValues.push(sortableArray[k]);
+      sortableArray[k] = mergeHelper[i];
+      animationsValues.push(sortableArray[k]);
+      i++;
+      k++;
+    }
   }
 }
