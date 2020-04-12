@@ -42,6 +42,16 @@ function processAlgorithmChoice() {
       //console.log(animationsValues);
       //console.log(sortableArray);
       animate();
+      break;
+    case "Insertion sort":
+      //console.log(sortableArray);
+      animations = [];
+      animationsValues = [];
+      insertionSort();
+      //console.log(sortableArray);
+      correctSort();
+      animate();
+      break;
   }
 }
 
@@ -141,7 +151,7 @@ function animate() {
           ).style.height = `${animationsValues[i]}px`;
         }
       }
-    }, 2 * i);
+    }, 4 * i);
   }
   correctSort();
 }
@@ -280,5 +290,37 @@ function merge(start, mid, end) {
       i++;
       k++;
     }
+  }
+}
+
+function insertionSort() {
+  let currentElement;
+  let correctPosition;
+  for (let i = 1; i < sortableArray.length; i++) {
+    currentElement = sortableArray[i];
+    correctPosition = i;
+    for (let j = i - 1; j >= 0; j--) {
+      animations.push(j + "," + i);
+
+      if (currentElement < sortableArray[j]) {
+        animations.push(j + "," + (j + 1));
+        animationsValues.push(sortableArray[j]);
+        animationsValues.push(sortableArray[j]);
+        sortableArray[j + 1] = sortableArray[j];
+        correctPosition = j;
+      } else {
+        animations.push("none");
+        animationsValues.push(0);
+        animationsValues.push(0);
+        break;
+      }
+    }
+
+    animations.push(correctPosition + "," + i);
+    animations.push(correctPosition + "," + i);
+    animationsValues.push(-1);
+    animationsValues.push(currentElement);
+
+    sortableArray[correctPosition] = currentElement;
   }
 }
