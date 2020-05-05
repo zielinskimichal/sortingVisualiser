@@ -69,7 +69,7 @@ function generateArray() {
   let arrayBarWidth =
     (arrayWrapperWidth - numberOfElements * 2) / numberOfElements;
   for (let i = 0; i < numberOfElements; i++) {
-    sortableArray.push(Math.round(Math.random() * 750) + 10);
+    sortableArray.push(Math.round(Math.random() * 550) + 10);
     let newArrayBar = document.createElement("div");
     newArrayBar.classList.add("arrayBar");
     newArrayBar.id = i;
