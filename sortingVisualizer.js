@@ -4,7 +4,7 @@ let animations = [];
 let animationsValues = [];
 let currentAlgorithm;
 
-//adding click listeners to algorithms buttons//
+//adding click listeners to algorithms buttons
 let algorithms = document.querySelectorAll(".sortingAlgorithms__oneAlgorithm ");
 algorithms.forEach((element) =>
   element.addEventListener("click", (e) => {
